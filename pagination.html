@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="data"></div>
+
+
+</body>
+<script>
+    let req
+    let request = new XMLHttpRequest();
+    request.open("GET", "https://raw.githubusercontent.com/Rajavasanthan/jsondata/master/pagenation.json");
+    request.send();
+    request.onload = () => {
+        if (request.status === 200) {
+            let req = JSON.parse(request.response)
+            let employee = document.getElementById("data")
+            for (i = 0; i <= request.length; i++) {
+                console.log(req(i).name);
+            }
+            // by default the response comes in the string format, we need to parse the data into JSON
+            console.log(JSON.parse(request.response));
+        } else {
+            console.log(`error ${request.status} ${request.statusText}`);
+        }
+    };
+
+
+
+
+</script>
+
+</html>
